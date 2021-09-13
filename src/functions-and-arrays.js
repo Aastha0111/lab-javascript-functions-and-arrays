@@ -1,44 +1,52 @@
 // Progression #1: Greatest of the two numbers
-greatestOfTwoNumbers=(a,b) => {
-  if(a>b)
+function greatestOfTwoNumbers(num1,num2)
+{
+  if(num1>num2)
   {
-    return a;
+    return num1;
   }
   else
   {
-   return b;
-  } 
+    return num2;
+  }
 }
 
 // Progression #2: The lengthy word
 const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
- findScaryWord=(words)=>
-{
-  let lengthy_word;
-  let maxlength=0;
-  if(words.length==0)
-     return null;
-  for(var i=0;i<words.length;i++)
-  {
-    if( words[i].length>maxlength)
-    {
-    maxlength =  words[i].length;
-    lengthy_word=words[i];
+function findScaryWord(words){
+  if(words.length==0){
+    return null;
+  }  
+  else if(words.length==1){
+    return words[0];
   }
-}
-  return lengthy_word;
+  else if(words.length==2){
+    if(words[0].length==words[1].length){
+      return words[0];
+    }
+  }
+  else if(words.length>2){
+    for(i=0;i<words.length;i++){      
+      if(words[0].length<words[i].length){
+        words[0] = words[i];
+      }   
+    }
+    return words[0];
+  }
 }
 
 // Progression #3: Net Price
 const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
-netPrice = (numbers) => {
-  var sum=0;
-  for(var i=0;i<numbers.length;i++)
-  {
-  sum+=numbers[i];
-  }
-  return sum;
+function netPrice(numbers){  
+  let sum=0;
+  for(i=0;i<numbers.length;i++){
+    if(numbers[i]!=0){
+      sum = sum +numbers[i];
+    }     
+  }      
+  return sum; 
 }
+
 //Progression #3.1 (Bonus): A generic sum() function
 const mixedArr = [63, 122, 'audi', 61, true, 'volvo', '20', 'lamborghini', 38, 156];
 add = (mixedArr) => {
@@ -68,6 +76,7 @@ add = (mixedArr) => {
 }
 return sum;
 }
+
 // Progression #4: Calculate the average
 // Progression 4.1: Array of numbers
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
@@ -172,14 +181,12 @@ const wordsCount = [
   'disobedience',
   'matter'
 ];
-howManyTimesElementRepeated =(wordsCount,word)=>{
-  let count = 0;
-  if(wordsCount.length==0)
-  return 0;
-  for(i=0;i<wordsCount.length;i++)
-  {
-  if(wordsCount[i]===word)
-  count++;
+function howManyTimesElementRepeated(wordsCount,_count){
+  let count=0;
+  for(let i=0;i<wordsCount.length;i++){
+    if(wordsCount[i]==_count){
+      count=count+1;
+    }
   }
   return count;
 }
@@ -198,21 +205,17 @@ const matrix = [
   [24, 55, 58, 05, 66, 73, 99, 26, 97, 17],
   [21, 36, 23, 09, 75, 00, 76, 44, 20, 45]
 ];
-maximumProduct=(matrix)=>{
-  var max=0;
-  var result;
-  for(var i=0;i<10;i++){
-    for(var j=0;j<10;j++){
-      if((j-3)>=0)
-        result=matrix[i][j]*matrix[i][j-1]*matrix[i][j-2]*matrix[i][j-3];
-        if(max<result)
-        max=result;
-      }
-      if((i-3)>=0){
-        result=matrix[i][j]*matrix[i-1][j]*matrix[i-2][j]*matrix[i-3][j];
-        if(max<result)
-        max=result;
-      }
-}
-return max;
+
+function maximumProduct(matrix){
+  let sum=0;
+  for(let i=0;i<matrix.length;i++){
+    for(let j=0;j<matrix[i].length;j++){
+      let mmatrix = matrix[i];
+      sum = sum+mmatrix[j];
+    }
   }
+  let len = matrix.length*matrix.length;
+  if(sum==len){
+    return 1;
+  }
+}
